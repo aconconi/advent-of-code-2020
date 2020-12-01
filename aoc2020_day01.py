@@ -8,42 +8,20 @@ with open("data/day01.dat", "r") as data_file:
     lines = data_file.read().splitlines()
 
 data = [int(x) for x in lines]
-
-
-# brute force solution
-# def day01_part01():
-#     return next(i * j for i in data for j in data if i + j == 2020)
-
-# def day01_part02():
-#     return next(i * j * k for i in data for j in data for k in data if i + j + k == 2020)
-
-
-# better solution leveraging data sort
 data.sort()
-min_n = min(data)
+
 
 def day01_part01():
-    for i in data:
-        for j in data:
-            if i + j == 2020:
-                return i * j
-            elif i + j > 2020:
-                break
-    return None
+    return next(n * (2020 - n) for n in data if 2020 - n in data)
 
 
 def day01_part02():
-    for i in data:
-        for j in data:
-            if i + j > 2020:
-                break
-
-            for k in data:
-                if i + j + k == 2020:
-                    return i * j * k
-                elif i + j + k > 2020:
-                    break
-    return None
+    return next(
+        i * j * (2020 - i - j)
+        for i in data
+        for j in (x for x in data if i + x < 2020)
+        if 2020 - i - j in data
+    )
 
 
 # Part 1
