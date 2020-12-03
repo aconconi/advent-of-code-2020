@@ -35,9 +35,11 @@ with open("data/day02.dat", "r") as data_file:
     lines = data_file.read().splitlines()
 
 # Part 1 solution
+print("How many passwords are valid according to their policies?")
 print(day02_part1(lines))  # 493
 
 # Part 2 solution
+print("How many passwords are valid according to the new interpretation of the policies?")
 print(day02_part2(lines))  # 593
 
 
