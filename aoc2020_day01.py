@@ -26,9 +26,11 @@ def day01_part02(numbers):
 
 
 # Part 1
+print("Find the two entries that sum to 2020; what do you get if you multiply them together?")
 print(day01_part01(data))  # Correct answer is 1007104
 
 # Part 2
+print("In your expense report, what is the product of the three entries that sum to 2020?")
 print(day01_part02(data))  # Correct answer is 18847752
 
 
