@@ -1,15 +1,6 @@
 """
     Advent of Code 2020
     Day 04: Passport Processing
-
-    byr (Birth Year)
-    iyr (Issue Year)
-    eyr (Expiration Year)
-    hgt (Height)
-    hcl (Hair Color)
-    ecl (Eye Color)
-    pid (Passport ID)
-    cid (Country ID)
 """
 
 
@@ -26,7 +17,6 @@ for line in lines + [""]:
     if line:
         entry.append(line)
     else:
-        # passport = create_passport(' '.join(entry))
         passport_str = " ".join(entry)
         input_data.append(passport_str)
         entry = []
@@ -38,13 +28,13 @@ def day04_part1(data):
 
 
 REQUIRED = {
-    "byr": r"(19[2-9][0-9]|200[0-2])",
-    "iyr": r"20(1[0-9]|20)",
-    "eyr": r"20(2[0-9]|30)",
-    "hgt": r"(1[5-8][0-9]cm|19[0-3]cm|59in|6[0-9]in|7[0-6]in)",
-    "hcl": r"#[0-9a-f]{6}",
-    "ecl": r"(amb|blu|brn|gry|grn|hzl|oth)",
-    "pid": r"[0-9]{9}",
+    "byr": re.compile(r"^(19[2-9][0-9]|200[0-2])$"),
+    "iyr": re.compile(r"^20(1[0-9]|20)$"),
+    "eyr": re.compile(r"^20(2[0-9]|30)$"),
+    "hgt": re.compile(r"^(1[5-8][0-9]cm|19[0-3]cm|59in|6[0-9]in|7[0-6]in)$"),
+    "hcl": re.compile(r"^#[0-9a-f]{6}$"),
+    "ecl": re.compile(r"^(amb|blu|brn|gry|grn|hzl|oth)$"),
+    "pid": re.compile(r"^[0-9]{9}$")
 }
 
 
@@ -63,7 +53,7 @@ def is_valid(line: str) -> bool:
     passport = {value.split(":")[0]: value.split(":")[1] for value in line.split()}
 
     return all(
-        bool(re.fullmatch(REQUIRED[key], passport.get(key, ""))) for key in REQUIRED
+        bool(REQUIRED[field].match(passport.get(field, ""))) for field in REQUIRED
     )
 
 
@@ -73,11 +63,11 @@ def day04_part2(data):
 
 # Part 1
 print("In your batch file, how many passports are valid?")
-print(day04_part1(input_data))  # 192
+print(day04_part1(input_data))  # Correct solution is 192
 
 # Part 2
 print("In your batch file, how many passports are valid?")
-print(day04_part2(input_data))  # 101
+print(day04_part2(input_data))  # Correct solution is 101
 
 
 # Test cases
