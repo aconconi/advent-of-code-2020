@@ -17,14 +17,13 @@ for line in lines + [""]:
     if line:
         entry.append(line)
     else:
-        passport_str = " ".join(entry)
-        input_data.append(passport_str)
+        input_data.append(" ".join(entry))
         entry = []
 
 
 def day04_part1(data):
     required = {"byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"}
-    return sum(all(field in passport for field in required) for passport in data)
+    return sum(all(field in passport_str for field in required) for passport_str in data)
 
 
 REQUIRED = {
@@ -38,7 +37,7 @@ REQUIRED = {
 }
 
 
-def is_valid(line: str) -> bool:
+def is_valid(passport_str: str) -> bool:
     # byr (Birth Year) - four digits; at least 1920 and at most 2002.
     # iyr (Issue Year) - four digits; at least 2010 and at most 2020.
     # eyr (Expiration Year) - four digits; at least 2020 and at most 2030.
@@ -50,7 +49,7 @@ def is_valid(line: str) -> bool:
     # pid (Passport ID) - a nine-digit number, including leading zeroes.
     # cid (Country ID) - ignored, missing or not.
 
-    passport = {value.split(":")[0]: value.split(":")[1] for value in line.split()}
+    passport = {value.split(":")[0]: value.split(":")[1] for value in passport_str.split()}
 
     return all(
         bool(REQUIRED[field].match(passport.get(field, ""))) for field in REQUIRED
