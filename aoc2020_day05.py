@@ -20,7 +20,7 @@ def day05_part2(data):
 
 
 # Read input lines
-with open("data/day05.dat", "r") as data_file:
+with open("data/day05.txt", "r") as data_file:
     lines = data_file.read().splitlines()
 
 # Part 1

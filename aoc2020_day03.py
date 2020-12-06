@@ -48,7 +48,7 @@ def day03_part2(data):
 
 
 # read input file into lines
-with open("data/day03.dat", "r") as data_file:
+with open("data/day03.txt", "r") as data_file:
     lines = data_file.read().splitlines()
 
 # Part 1 solution
