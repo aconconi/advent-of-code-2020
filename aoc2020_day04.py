@@ -8,7 +8,7 @@ import re
 
 
 # pare input so that each line is a passport entry
-with open("data/day04.dat", "r") as data_file:
+with open("data/day04.txt", "r") as data_file:
     lines = data_file.read().splitlines()
 
 input_data = []

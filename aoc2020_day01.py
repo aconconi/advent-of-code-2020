@@ -5,7 +5,7 @@
 
 
 # read input file into lines
-with open("data/day01.dat", "r") as data_file:
+with open("data/day01.txt", "r") as data_file:
     lines = data_file.read().splitlines()
 
 data = [int(x) for x in lines]
