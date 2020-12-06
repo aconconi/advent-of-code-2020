@@ -7,14 +7,8 @@
 # parse an input file that contains multi-line entries
 # separated by blank lines into a list of lists
 def parse_input(file_name):
-    data = [[]]
     with open(file_name, "r") as data_file:
-        for line in data_file.read().splitlines():
-            if line:
-                data[-1].append(line)
-            else:
-                data.append([])
-    return data if data[0] else []
+        return [line.splitlines() for line in data_file.read().split("\n\n")]
 
 
 def day06_part1(data):
