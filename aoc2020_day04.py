@@ -9,16 +9,7 @@ import re
 
 # pare input so that each line is a passport entry
 with open("data/day04.txt", "r") as data_file:
-    lines = data_file.read().splitlines()
-
-input_data = []
-entry = []
-for line in lines + [""]:
-    if line:
-        entry.append(line)
-    else:
-        input_data.append(" ".join(entry))
-        entry = []
+    input_data = [line.replace('\n', ' ') for line in data_file.read().split("\n\n")]
 
 
 def day04_part1(data):
