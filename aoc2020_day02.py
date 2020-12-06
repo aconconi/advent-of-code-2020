@@ -12,7 +12,6 @@ def day02_part1(data):
         low, high, char, password = re.split("-|: | ", z)
         # Alternative version using pattern matching
         # low, high, char, password = re.match("(\d*)-(\d*) (\w): (\w*)", z).groups()
-
         if int(low) <= password.count(char) <= int(high):
             valid += 1
 

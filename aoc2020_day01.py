@@ -42,5 +42,6 @@ print(day01_part02(data))  # Correct answer is 18847752
 
 def test_day01_part1():
     assert day01_part01([1721, 979, 366, 299, 675, 1456]) == 514579
+
 def test_day01_part2():
     assert day01_part02([1721, 979, 366, 299, 675, 1456]) == 241861950
