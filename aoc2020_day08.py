@@ -86,9 +86,6 @@ def day08_part2(program):
                     queue.append((pc + arg, acc))
                 pc += 1
 
-
-
-
     # If we get here, something is wrong.
     raise Exception("Smart: Could not find a fix for this program.")
 
