@@ -24,12 +24,10 @@ def day10_part1(data):
     return diff_count[1] * diff_count[3]
 
 
-
 def day10_part2(data):
-    # Sort adapters by joltage and add device's built-in joltage adapter
+    # Sort adapters by joltage; destination is the adapter with highest rating.
     adapters = [0] + sorted(data)
-    dest = adapters[-1] + 3
-    adapters.append(dest)
+    dest = adapters[-1]
 
     # Build a graph representing possible connections between adapters.
     graph = {}
@@ -37,20 +35,21 @@ def day10_part2(data):
         graph[adapter] = [x for x in adapters[i + 1 :] if x - adapter <= 3]
 
     # Coveniently enough, the graph is a DAG in topological order,
-    # and counting paths from each node to last node is O(V+E).
+    # therefore counting paths from each node to last node is O(V+E).
     pc = Counter()
     pc[dest] = 1
     for adapter in reversed(adapters):
         for neighbour in graph[adapter]:
             pc[adapter] += pc[neighbour]
 
-    # The solution is the number of paths from the first node
+    # The solution is the number of paths from the first node.
     return pc[0]
 
 
 # Part 1
 input_data = read_puzzle_input("data/day10.txt")
 print("What is the number of 1-jolt differences multiplied by the number of 3-jolt differences?")
+print(day10_part1(input_data))
 
 # Part 2
 print("What is the total number of distinct ways you can arrange the adapters to connect the charging outlet to your device?")
