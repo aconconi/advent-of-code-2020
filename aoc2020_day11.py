@@ -6,6 +6,7 @@
 
 OCCUPIED = "#"
 FREE = "L"
+FLOOR = "."
 DELTAS = [(0, -1), (0, +1), (-1, 0), (+1, 0), (-1, -1), (-1, +1), (+1, -1), (+1, +1)]
 
 
@@ -31,10 +32,13 @@ class Grid(dict):
 
 def solve(data, f_count, threshold):
     grid = Grid(data)
+
     while True:
         # apply evolution rules and track changes
         changes = set()
         for pos in grid:
+            if grid[pos] == FLOOR:
+                continue
             neighbors = f_count(grid, pos)
             if grid[pos] == FREE and neighbors == 0:
                 changes.add((pos, OCCUPIED))
