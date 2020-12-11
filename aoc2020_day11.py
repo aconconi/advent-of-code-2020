@@ -11,7 +11,7 @@ DELTAS = [(0, -1), (0, +1), (-1, 0), (+1, 0), (-1, -1), (-1, +1), (+1, -1), (+1,
 
 
 def read_puzzle_input(file_name):
-    """read file as list of rows and create a grid as list of list of characters"""
+    """read file as list of lines"""
     return open(file_name, "r").read().splitlines()
 
 
