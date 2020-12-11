@@ -3,10 +3,10 @@
     Day 11: Seating System
 """
 
-from typing import Collection
 
-
-from collections import defaultdict
+OCCUPIED = "#"
+FREE = "L"
+DELTAS = [(0, -1), (0, +1), (-1, 0), (+1, 0), (-1, -1), (-1, +1), (+1, -1), (+1, +1)]
 
 
 def read_puzzle_input(file_name):
@@ -14,101 +14,72 @@ def read_puzzle_input(file_name):
     return open(file_name, "r").read().splitlines()
 
 
-test_data = read_puzzle_input("data/day11_test.txt")
-input_data = read_puzzle_input("data/day11.txt")
+class Grid(dict):
+    def __init__(self, data):
+        self.max_col = len(data[0])
+        self.max_row = len(data)
 
-OCCUPIED = "#"
-FREE = "L"
-deltas = [
-    (0, -1),
-    (0, +1),
-    (-1, 0),
-    (+1, 0),
-    (-1, -1),
-    (-1, +1),
-    (+1, -1),
-    (+1, +1),
-]
+        super().__init__(
+            ((row, col), data[row][col])
+            for row in range(self.max_row)
+            for col in range(self.max_col)
+        )
+
+    def __missing__(self, key):
+        return None
 
 
-
-
-def day11_part1(data):
-    max_col = len(data[0])
-    max_row = len(data)
-
-    adjacency = {
-        (row, col): [
-            (row + dr, col + dc)
-            for dr, dc in deltas
-            if 0 <= row + dr < max_row and 0 <= col + dc < max_col
-        ]
-        for col in range(max_col)
-        for row in range(max_row)
-    }
-
-    grid = {
-        (row, col): data[row][col] for row in range(max_row) for col in range(max_col)
-    }
-
+def solve(data, f_count, threshold):
+    grid = Grid(data)
     while True:
-        changes = []
+        # apply evolution rules and track changes
+        changes = set()
         for pos in grid:
-            neighbors = sum(grid[z] == OCCUPIED for z in adjacency[pos])
+            neighbors = f_count(grid, pos)
             if grid[pos] == FREE and neighbors == 0:
-                changes.append((pos, OCCUPIED))
-            elif grid[pos] == OCCUPIED and neighbors >= 4:
-                changes.append((pos, FREE))
+                changes.add((pos, OCCUPIED))
+            elif grid[pos] == OCCUPIED and neighbors >= threshold:
+                changes.add((pos, FREE))
 
         if not changes:
+            # equilibrium reached, return total number of occupied seats
             return sum(c == OCCUPIED for c in grid.values())
         else:
+            # commit changes to grid
             for pos, cell in changes:
                 grid[pos] = cell
 
 
-def day11_part2(data):
-    max_col = len(data[0])
-    max_row = len(data)
-
-    def beam(grid, pos, dir):
+def day11_part1(data):
+    def part1_counter(grid, pos):
         row, col = pos
-        dr, dc = dir
+        return sum(grid[(row + dr, col + dc)] == OCCUPIED for dr, dc in DELTAS)
+
+    return solve(data, part1_counter, 4)
+
+
+def day11_part2(data):
+    def beam(grid, pos, inc):
+        row, col = pos
         while True:
+            dr, dc = inc
             row += dr
             col += dc
-            if not (0 <= row < max_row and 0 <= col < max_col):
+            if not grid[(row, col)]:
                 return False
             if grid[(row, col)] == OCCUPIED:
                 return True
             if grid[(row, col)] == FREE:
                 return False
 
-    gen = {
-        (row, col): data[row][col] for row in range(max_row) for col in range(max_col)
-    }
+    def part2_counter(grid, pos):
+        return sum(beam(grid, pos, inc) for inc in DELTAS)
 
-    while True:
-        changes = set()
-        for pos in gen:
-            neighbors = sum(beam(gen, pos, d) for d in deltas)
-            if gen[pos] == FREE and neighbors == 0:
-                changes.add((pos, OCCUPIED))
-            elif gen[pos] == OCCUPIED and neighbors >= 5:
-                changes.add((pos, FREE))
-
-        if not changes:
-            return sum(c == OCCUPIED for c in gen.values())
-        else:
-            for pos, cell in changes:
-                gen[pos] = cell
-
-
-# def solve(data, f_count, threshold):
-
+    return solve(data, part2_counter, 5)
 
 
 # Part 1
+input_data = read_puzzle_input("data/day11.txt")
 print(
     "Simulate your seating area by applying the seating rules repeatedly\
     until no seats change state. How many seats end up occupied?"
@@ -120,15 +91,16 @@ print(
     "Given the new visibility method and the rule change for occupied seats\
     becoming empty, once equilibrium is reached, how many seats end up occupied?"
 )
-print(day11_part2(input_data))  # Correct answer is 2149
-
+print(day11_part2(input_data))
 
 
 # Test cases
 test_data = read_puzzle_input("data/day11_test.txt")
 
+
 def test_day11_part1():
     assert day11_part1(test_data) == 37
+
 
 def test_day11_part2():
     assert day11_part2(test_data) == 26
