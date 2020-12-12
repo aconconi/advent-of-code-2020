@@ -3,54 +3,47 @@
     Day 12: Rain Risk
 """
 
-from collections import deque
-
-
 DIRS = {"N": (0, +1), "S": (0, -1), "E": (+1, 0), "W": (-1, 0)}
-ROTS = {"L": 1, "R": -1}
+ROTATE = { 'L': lambda x, y : (-y, x), 'R': lambda x, y: (y, -x)}
 
 
 def read_puzzle_input(file_name):
     with open(file_name, "r") as data_file:
         return [(line[0], int(line[1:])) for line in data_file.read().splitlines()]
 
+
 def day12_part1(data):
     x, y = 0, 0
-    direction = deque(["E", "S", "W", "N"])
+    direction = DIRS["E"]
+
     for inst, arg in data:
         if inst in DIRS:
             dx, dy = DIRS[inst]
             x += dx * arg
             y += dy * arg
-        elif inst in ROTS:
-            direction.rotate(ROTS[inst] * arg // 90)
+        elif inst in ROTATE:
+            for _ in range(arg % 360 // 90):
+                direction = ROTATE[inst](*direction)
         elif inst == "F":
-            dx, dy = DIRS[direction[0]]
+            dx, dy = direction
             x += dx * arg
             y += dy * arg
 
     return abs(x) + abs(y)
 
 
-def rotate_left(x, y):
-    return (-y, x)
-
-
-def rotate_right(x, y):
-    return (y, -x)
-
-
 def day12_part2(data):
     x, y = 0, 0
     wx, wy = 10, 1
+
     for inst, arg in data:
         if inst in DIRS:
             dx, dy = DIRS[inst]
             wx += dx * arg
             wy += dy * arg
-        elif inst in ROTS:
+        elif inst in ROTATE:
             for _ in range(arg % 360 // 90):
-                wx, wy = rotate_left(wx, wy) if inst == "L" else rotate_right(wx, wy)
+                wx, wy = ROTATE[inst](wx, wy)
         elif inst == "F":
             x += wx * arg
             y += wy * arg
