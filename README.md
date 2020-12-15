@@ -5,18 +5,20 @@
 > any programming language you like. People use them as a speed contest, interview prep,
 > company training, university coursework, practice problems, or to challenge each other.
 
-| Day | Puzzle                                                     | Solution                             |
-| --: | :--------------------------------------------------------- | :----------------------------------- |
-|   1 | [Report repair](https://adventofcode.com/2020/day/1)       | [aoc2020_day01.py](aoc2020_day01.py) |
-|   2 | [Password Philosophy](https://adventofcode.com/2020/day/2) | [aoc2020_day02.py](aoc2020_day02.py) |
-|   3 | [Tobbogan Trajectory](https://adventofcode.com/2020/day/3) | [aoc2020_day03.py](aoc2020_day03.py) |
-|   4 | [Passport Processing](https://adventofcode.com/2020/day/4) | [aoc2020_day04.py](aoc2020_day04.py) |
-|   5 | [Binary Boarding](https://adventofcode.com/2020/day/5)     | [aoc2020_day05.py](aoc2020_day05.py) |
-|   6 | [Custom Customs](https://adventofcode.com/2020/day/6)      | [aoc2020_day06.py](aoc2020_day06.py) |
-|   7 | [Handy Haversacks](https://adventofcode.com/2020/day/7)    | [aoc2020_day07.py](aoc2020_day07.py) |
-|   8 | [Handheld Halting](https://adventofcode.com/2020/day/8)    | [aoc2020_day08.py](aoc2020_day08.py) |
-|   9 | [Encoding Error](https://adventofcode.com/2020/day/9)      | [aoc2020_day09.py](aoc2020_day09.py) |
-|  10 | [Adapter Array](https://adventofcode.com/2020/day/10)      | [aoc2020_day10.py](aoc2020_day10.py) |
-|  11 | [Seating System](https://adventofcode.com/2020/day/11)     | [aoc2020_day11.py](aoc2020_day11.py) |
-|  12 | [Rain Risk](https://adventofcode.com/2020/day/12)          | [aoc2020_day12.py](aoc2020_day12.py) |
-|  13 | [Shuttle Search](https://adventofcode.com/2020/day/13)     | [aoc2020_day13.py](aoc2020_day13.py) |
+| Day | Puzzle                                                          | Solution                             |
+| --: | :-------------------------------------------------------------- | :----------------------------------- |
+|   1 | [Report repair](https://adventofcode.com/2020/day/1)            | [aoc2020_day01.py](aoc2020_day01.py) |
+|   2 | [Password Philosophy](https://adventofcode.com/2020/day/2)      | [aoc2020_day02.py](aoc2020_day02.py) |
+|   3 | [Tobbogan Trajectory](https://adventofcode.com/2020/day/3)      | [aoc2020_day03.py](aoc2020_day03.py) |
+|   4 | [Passport Processing](https://adventofcode.com/2020/day/4)      | [aoc2020_day04.py](aoc2020_day04.py) |
+|   5 | [Binary Boarding](https://adventofcode.com/2020/day/5)          | [aoc2020_day05.py](aoc2020_day05.py) |
+|   6 | [Custom Customs](https://adventofcode.com/2020/day/6)           | [aoc2020_day06.py](aoc2020_day06.py) |
+|   7 | [Handy Haversacks](https://adventofcode.com/2020/day/7)         | [aoc2020_day07.py](aoc2020_day07.py) |
+|   8 | [Handheld Halting](https://adventofcode.com/2020/day/8)         | [aoc2020_day08.py](aoc2020_day08.py) |
+|   9 | [Encoding Error](https://adventofcode.com/2020/day/9)           | [aoc2020_day09.py](aoc2020_day09.py) |
+|  10 | [Adapter Array](https://adventofcode.com/2020/day/10)           | [aoc2020_day10.py](aoc2020_day10.py) |
+|  11 | [Seating System](https://adventofcode.com/2020/day/11)          | [aoc2020_day11.py](aoc2020_day11.py) |
+|  12 | [Rain Risk](https://adventofcode.com/2020/day/12)               | [aoc2020_day12.py](aoc2020_day12.py) |
+|  13 | [Shuttle Search](https://adventofcode.com/2020/day/13)          | [aoc2020_day13.py](aoc2020_day13.py) |
+|  14 | [Docking Data](https://adventofcode.com/2020/day/14)            | [aoc2020_day14.py](aoc2020_day14.py) |
+|  15 | [Rambunctious Recitation](https://adventofcode.com/2020/day/15) | [aoc2020_day15.py](aoc2020_day15.py) |
