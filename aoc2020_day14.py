@@ -75,22 +75,22 @@ def gen(mask: str, addr: int) -> int:
     yield from (int(''.join(s), 2) for s in product(*bits))
 
 
+if __name__ == "__main__":
+    # Part 1
+    print(
+        "Execute the initialization program. What is the sum of all values\
+        left in memory after it completes?"
+    )
+    input_program = read_puzzle_input("data/day14.txt")
+    print(day14_part1(input_program))
 
-# Part 1
-print(
-    "Execute the initialization program. What is the sum of all values\
-    left in memory after it completes?"
-)
-input_program = read_puzzle_input("data/day14.txt")
-print(day14_part1(input_program))
 
-
-# Part 2
-print(
-    "Execute the initialization program using an emulator for a version 2 decoder\
-     chip. What is the sum of all values left in memory after it completes?"
-)
-print(day14_part2(input_program))
+    # Part 2
+    print(
+        "Execute the initialization program using an emulator for a version 2 decoder\
+        chip. What is the sum of all values left in memory after it completes?"
+    )
+    print(day14_part2(input_program))
 
 
 # Test cases

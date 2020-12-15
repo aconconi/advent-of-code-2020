@@ -4,7 +4,7 @@
 """
 
 DIRS = {"N": (0, +1), "S": (0, -1), "E": (+1, 0), "W": (-1, 0)}
-ROTATE = { 'L': lambda x, y : (-y, x), 'R': lambda x, y: (y, -x)}
+ROTATE = {"L": lambda x, y: (-y, x), "R": lambda x, y: (y, -x)}
 
 
 def read_puzzle_input(file_name):
@@ -51,21 +51,25 @@ def day12_part2(data):
     return abs(x) + abs(y)
 
 
-# Part 1
-input_data = read_puzzle_input("data/day12.txt")
-print("Part 1: What is the Manhattan distance between that location and the ship's starting position?")
-print(day12_part1(input_data))  # Correct answer is 820
+if __name__ == "__main__":
+    input_data = read_puzzle_input("data/day12.txt")
 
-# Part 2
-print("Part 2: What is the Manhattan distance between that location and the ship's starting position?")
-print(day12_part2(input_data))  # Correct answer is 66614
+    # Part 1
+    print("Part 1: What is the Manhattan distance between that location and the ship's starting position?")
+    print(day12_part1(input_data))  # Correct answer is 820
+
+    # Part 2
+    print("Part 2: What is the Manhattan distance between that location and the ship's starting position?")
+    print(day12_part2(input_data))  # Correct answer is 66614
 
 
 # Test cases
 test_data = read_puzzle_input("data/day12_test.txt")
 
+
 def test_day12_part1():
     assert day12_part1(test_data) == 25
+
 
 def test_day12_part2():
     assert day12_part2(test_data) == 286
