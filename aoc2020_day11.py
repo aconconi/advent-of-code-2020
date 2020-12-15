@@ -82,20 +82,16 @@ def day11_part2(data):
     return solve(data, part2_counter, 5)
 
 
-# Part 1
-input_data = read_puzzle_input("data/day11.txt")
-print(
-    "Simulate your seating area by applying the seating rules repeatedly\
-    until no seats change state. How many seats end up occupied?"
-)
-print(day11_part1(input_data))
+if __name__ == "__main__":
+    input_data = read_puzzle_input("data/day11.txt")
 
-# Part 2
-print(
-    "Given the new visibility method and the rule change for occupied seats\
-    becoming empty, once equilibrium is reached, how many seats end up occupied?"
-)
-print(day11_part2(input_data))
+    # Part 1
+    print("Simulate your seating area by applying the seating rules repeatedly until no seats change state. How many seats end up occupied?")
+    print(day11_part1(input_data))
+
+    # Part 2
+    print("Given the new visibility method and the rule change for occupied seats becoming empty, once equilibrium is reached, how many seats end up occupied?")
+    print(day11_part2(input_data))
 
 
 # Test cases
