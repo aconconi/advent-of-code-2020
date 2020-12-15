@@ -46,14 +46,16 @@ def day10_part2(data):
     return pc[0]
 
 
-# Part 1
-input_data = read_puzzle_input("data/day10.txt")
-print("What is the number of 1-jolt differences multiplied by the number of 3-jolt differences?")
-print(day10_part1(input_data))
+if __name__ == "__main__":
+    input_data = read_puzzle_input("data/day10.txt")
 
-# Part 2
-print("What is the total number of distinct ways you can arrange the adapters to connect the charging outlet to your device?")
-print(day10_part2(input_data))
+    # Part 1
+    print("What is the number of 1-jolt differences multiplied by the number of 3-jolt differences?")
+    print(day10_part1(input_data))
+
+    # Part 2
+    print("What is the total number of distinct ways you can arrange the adapters to connect the charging outlet to your device?")
+    print(day10_part2(input_data))
 
 
 # Test cases
