@@ -5,10 +5,7 @@
 
 import re
 from math import prod
-from collections import defaultdict
 
-
-file_name = "data/day16.txt"
 
 def read_puzzle_input(file_name):
     pattern_rule = re.compile(r"(.+): (\d+)-(\d+) or (\d+)-(\d+)")
