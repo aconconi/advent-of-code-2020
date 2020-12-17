@@ -56,36 +56,70 @@ def day16_part1(tickets, rules):
     return sum(scan_error(ticket, rules) for ticket in nearby)
 
 
+# def day16_part2(tickets, rules):
+#     myticket = tickets[0]
+#     valid_tickets = [ticket for ticket in tickets if validate_ticket(rules, ticket)]
+
+#     # create map of compatible rules for each field index f
+#     field_ruleset = dict()
+#     for f in range(len(myticket)):
+#         field_ruleset[f] = {
+#             rule[0]
+#             for rule in rules
+#             if all(validate_field(rule, ticket[f]) for ticket in valid_tickets)
+#         }
+
+#     # find solution by iteratively assigning rules to field indexes that have only 1 compatible rule
+#     # and removing the assigned rule from all other indexes
+#     solution = dict()
+#     while field_ruleset:
+#         i, ruleset = next(
+#             (i, ruleset) for i, ruleset in field_ruleset.items() if len(ruleset) == 1
+#         )
+#         single = next(iter(field_ruleset[i]))
+#         solution[i] = single
+#         del field_ruleset[i]
+#         for ruleset in field_ruleset.values():
+#             ruleset.discard(single)
+
+#     # order is now a bijective correspondance between field indexes and rules
+#     return prod(
+#         myticket[i]
+#         for i, rule in solution.items()
+#         if rule.startswith("departure")
+#     )
+
+
+
 def day16_part2(tickets, rules):
     myticket = tickets[0]
     valid_tickets = [ticket for ticket in tickets if validate_ticket(rules, ticket)]
 
     # create map of compatible rules for each field index f
-    field_ruleset = dict()
-    for f in range(len(myticket)):
-        field_ruleset[f] = {
+    possible = [None] * len(myticket)
+    for i in range(len(myticket)):
+        possible[i] = {
             rule[0]
             for rule in rules
-            if all(validate_field(rule, ticket[f]) for ticket in valid_tickets)
+            if all(validate_field(rule, ticket[i]) for ticket in valid_tickets)
         }
 
     # find solution by iteratively assigning rules to field indexes that have only 1 compatible rule
     # and removing the assigned rule from all other indexes
-    solution = dict()
-    while field_ruleset:
+    assigned = [None] * len(myticket)
+    while any(possible):
         i, ruleset = next(
-            (i, ruleset) for i, ruleset in field_ruleset.items() if len(ruleset) == 1
+            (i, ruleset) for i, ruleset in enumerate(possible) if len(ruleset) == 1
         )
-        single = next(iter(field_ruleset[i]))
-        solution[i] = single
-        del field_ruleset[i]
-        for ruleset in field_ruleset.values():
+        single = possible[i].pop()
+        assigned[i] = single
+        for ruleset in possible:
             ruleset.discard(single)
 
     # order is now a bijective correspondance between field indexes and rules
     return prod(
         myticket[i]
-        for i, rule in solution.items()
+        for i, rule in enumerate(assigned)
         if rule.startswith("departure")
     )
 
