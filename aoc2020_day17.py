@@ -51,18 +51,17 @@ def day17_part1(active):
 
 def day17_part2(active):
     active_4d = set(a + (0,) for a in active)
-    # print(active_4d)
     return solve(active_4d)
 
 
 if __name__ == "__main__":
-    active = read_puzzle_input("data/day17.txt")
+    input_active = read_puzzle_input("data/day17.txt")
 
     # Part 1
     print("Part 1: How many cubes are left in the active state after the sixth cycle?")
-    print(day17_part1(active))
+    print(day17_part1(input_active))
 
     # Part 2
     print("Part 2: How many cubes are left in the active state after the sixth cycle?")
-    print(day17_part2(active))
+    print(day17_part2(input_active))
 
