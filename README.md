@@ -22,3 +22,7 @@
 |  13 | [Shuttle Search](https://adventofcode.com/2020/day/13)          | [aoc2020_day13.py](aoc2020_day13.py) |
 |  14 | [Docking Data](https://adventofcode.com/2020/day/14)            | [aoc2020_day14.py](aoc2020_day14.py) |
 |  15 | [Rambunctious Recitation](https://adventofcode.com/2020/day/15) | [aoc2020_day15.py](aoc2020_day15.py) |
+|  16 | [Ticket Translation](https://adventofcode.com/2020/day/16)      | [aoc2020_day16.py](aoc2020_day16.py) |
+|  17 | [Conway Cubes](https://adventofcode.com/2020/day/17)            | [aoc2020_day17.py](aoc2020_day17.py) |
+|  18 | [Operation Order](https://adventofcode.com/2020/day/18)         | [aoc2020_day18.py](aoc2020_day18.py) |
+|  19 | [Monster Messages](https://adventofcode.com/2020/day/19)        | [aoc2020_day19.py](aoc2020_day19.py) |
