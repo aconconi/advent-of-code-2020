@@ -12,42 +12,35 @@ def read_puzzle_input(file_name):
     rules = dict()
     for line in lines[:blank]:
         i, r = line.split(":")
-        r = r.replace('"', "")
-        rules[i] = r.strip().split(" ")
+        rules[i]  = r.replace('"', "").strip()
 
     return rules, lines[blank + 1 :]
 
 
 def build_regex(expr, rules):
-    result = []
-    for t in expr:
+    result = ""
+    for t in expr.split(' '):
         if t.isdigit():
             s = rules[t]
-            if "|" in s:
-                result.append("(")
-                result.extend(build_regex(s, rules))
-                result.append(")")
-            else:
-                result.extend(build_regex(s, rules))
+            par_left, par_right = ("(", ")") if "|" in s else ("", "")
+            result += par_left + build_regex(s, rules) + par_right
         else:
-            result.append(t)
+            result += t
     return result
 
 
 def day19_part1(rules, message):
-    pattern = re.compile("".join(build_regex(["0"], rules)))
+    pattern = re.compile("".join(build_regex("0", rules)))
     return sum(pattern.fullmatch(line) is not None for line in message)
 
 
 def day19_part2(rules, message):
-    # 8: 42 | 42 8
-    # 11: 42 31 | 42 11 31
-    rules["8"] = "( 42 )+".split()
-    build = [" 42 " * i + " 31 " * i for i in range(1, 5)]
-    build = "|".join(build).strip()
-    rules["11"] = build.split()
-    pattern = re.compile("".join(build_regex(["0"], rules)))
-    return sum(pattern.fullmatch(line) is not None for line in message)
+    # Rule 8: 42 | 42 8
+    rules["8"] = "( 42 ) +"
+    # Rule 11: 42 31 | 42 11 31
+    rules["11"] = "|".join([" 42 " * i + " 31 " * i for i in range(1, 5)]).strip()
+    return day19_part1(rules, message)
+
 
 
 if __name__ == "__main__":
@@ -60,3 +53,5 @@ if __name__ == "__main__":
     # Part 2
     print("After updating rules 8 and 11, how many messages completely match rule 0?")
     print(day19_part2(input_rules, input_message))
+
+
