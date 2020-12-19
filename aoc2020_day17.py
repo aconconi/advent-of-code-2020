@@ -3,8 +3,7 @@
     Day 17: Conway Cubes
 """
 
-
-from itertools import product, repeat
+from itertools import product
 
 
 def read_puzzle_input(file_name):
@@ -44,7 +43,6 @@ def solve(active):
     return len(active)
 
 
-
 def day17_part1(active):
     return solve(active)
 
@@ -64,4 +62,3 @@ if __name__ == "__main__":
     # Part 2
     print("Part 2: How many cubes are left in the active state after the sixth cycle?")
     print(day17_part2(input_active))
-
