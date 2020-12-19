@@ -42,7 +42,6 @@ def day19_part2(rules, message):
     return day19_part1(rules, message)
 
 
-
 if __name__ == "__main__":
     input_rules, input_message = read_puzzle_input("data/day19.txt")
 
@@ -55,3 +54,17 @@ if __name__ == "__main__":
     print(day19_part2(input_rules, input_message))
 
 
+
+# Test cases
+
+def test_day19_part1():
+    rules, message = read_puzzle_input("data/day19_test.txt")
+    assert day19_part1(rules, message) == 2
+
+    rules, message = read_puzzle_input("data/day19_test2.txt")
+    assert day19_part1(rules, message) == 3
+
+
+def test_day19_part2():
+    rules, imessage = read_puzzle_input("data/day19_test2.txt")
+    assert day19_part2(rules, imessage) == 12
