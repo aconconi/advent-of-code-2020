@@ -8,7 +8,7 @@ def read_puzze_input(file_name):
     deck1, deck2 = open(file_name).read().split("\n\n")
     return [
         [int(c) for c in deck1.splitlines()[1:]],
-        [int(c) for c in deck2.splitlines()[1:]]
+        [int(c) for c in deck2.splitlines()[1:]],
     ]
 
 
@@ -33,7 +33,7 @@ def play_recursive_game(decks):
     while all(deck for deck in decks):
         # if there was a previous round in this game that had exactly the same cards
         # in the same order in the same players' decks, the game instantly ends
-        # in a win for player 0. 
+        # in a win for player 0.
         state = (tuple(decks[0]), tuple(decks[1]))
         if state in seen:
             winner = 0
@@ -70,15 +70,22 @@ def day22_part2(decks):
 
 
 if __name__ == "__main__":
-    file_name = "data/day22.txt"
-
     # Part 1
-    input_decks = read_puzze_input(file_name)
+    input_decks = read_puzze_input("data/day22.txt")
     print("Part 1: What is the winning player's score?")
     print(day22_part1(input_decks))
 
     # Part 2
     # must read input again because input_decks was modified in Part 1
-    input_decks = read_puzze_input(file_name)
+    input_decks = read_puzze_input("data/day22.txt")
     print("Part 2: What is the winning player's score?")
     print(day22_part2(input_decks))
+
+
+# Test cases
+def test_day22_part1():
+    assert day22_part1(read_puzze_input("data/day22_test.txt")) == 306
+
+
+def test_day22_part2():
+    assert day22_part2(read_puzze_input("data/day22_test.txt")) == 291
