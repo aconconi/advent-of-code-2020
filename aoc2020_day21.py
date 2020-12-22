@@ -3,79 +3,76 @@
     Day 21: Allergen Assessment
 """
 
-from collections import defaultdict
+from collections import Counter
 
 
 def read_puzze_input(file_name):
-    # fist pass on iinput data to clean up formatting
-    data = []
-    for line in open(file_name).read().splitlines():
-        recipe, allergenes = line.split(" (contains ")
-        allergenes = allergenes.replace(")", "").split(", ")
-        data.append((recipe, allergenes))
+    possible = {}
+    ingredient_counter = Counter()
 
-    # may_contain[ingr] is the set of allergens that may be contained by ingredient ingr
-    may_contain = defaultdict(set)
+    with open(file_name) as input_file:
+        for line in input_file:
+            recipe, allergens = line.split(" (contains ")
+            ingredients = set(recipe.split())
+            allergens = allergens[:-2].split(", ")
 
-    # recipes_with[alg] is the set of recipes that contain the allergen alg
-    recipes_with = defaultdict(set)
-    recipes = set()
+            for i in ingredients:
+                ingredient_counter[i] += 1
 
-    # build data structures
-    for recipe, allergenes in data:
-        for ingredient in recipe.split(" "):
-            may_contain[ingredient] |= set(allergenes)
+            for allergene in allergens:
+                if allergene in possible:
+                    possible[allergene] &= ingredients
+                else:
+                    possible[allergene] = ingredients.copy()
 
-        recipes.add(recipe)
-
-        for a in allergenes:
-            recipes_with[a].add(recipe)
-
-    return recipes, recipes_with, may_contain
+    return possible, ingredient_counter
 
 
-def day21_part1(recipes, recipes_with, may_contain):
-    inert = []
+def get_dangerous(possible):
+    dangerous = {}
+    while possible:
+        # get the next allergen associated with excatly one ingredient
+        single_allergen = next(
+            allergen
+            for allergen, ingredients in possible.items()
+            if len(ingredients) == 1
+        )
 
-    for ingredient, allergenes in may_contain.items():
-        for a in allergenes.copy():
-            if any(ingredient not in r for r in recipes_with[a]):
-                allergenes.remove(a)
-        if not allergenes:
-            inert.append(ingredient)
+        # get the ingredient associated with that allergen, and remove it from the dictionary
+        # note we are popping a set from a (dict) by key (single_allergen),
+        # then we are popping an element from that set
+        single_ingredient = possible.pop(single_allergen).pop()
 
-    return sum(ingredient in recipe for recipe in recipes for ingredient in inert)
+        # single_ingredient cannot be associated with any other allergen
+        for ingredients in possible.values():
+            ingredients.discard(single_ingredient)
+
+        # track dangerous ingredient
+        dangerous[single_allergen] = single_ingredient
+
+    return dangerous
 
 
-def day21_part2(may_contain):
-    dangerous = []
-    while True:
-        try:
-            # get the next ingredient with unique allergene associated
-            # and not tracked as dangerous yet
-            single_ing, single_alg = next(
-                (ingredient, allergenes)
-                for ingredient, allergenes in may_contain.items()
-                if len(allergenes) == 1 and ingredient not in dangerous
-            )
+def day21_part1(dangerous, ingredient_counter):
+    return sum(
+        c for i, c in ingredient_counter.items() if i not in dangerous.values()
+    )
 
-            # if such ingredient exist, add it to list of dangerous ingredients
-            # and remove it from candidates of all other ingredients
-            dangerous.append(single_ing)
-            for ingredient, allergenes in may_contain.items():
-                if ingredient != single_ing:
-                    allergenes -= single_alg
 
-        except StopIteration:
-            # if such ingredient does not exist, we're done!
-            return ",".join(sorted(dangerous, key=lambda x: next(iter(may_contain[x]))))
+def day21_part2(dangerous):
+    return ",".join(
+        ing for _, ing in sorted(dangerous.items())
+    )
 
 
 if __name__ == "__main__":
-    recipes, recipes_with, may_contain = read_puzze_input("data/day21.txt")
+    possible, ingredient_counter = read_puzze_input("data/day21.txt")
+    dangerous = get_dangerous(possible)
 
+    # Part 1
     print("How many times do any of those ingredients appear?")
-    print(day21_part1(recipes, recipes_with, may_contain))
+    print(day21_part1(dangerous, ingredient_counter))
 
+    # Part 2
     print("What is your canonical dangerous ingredient list?")
-    print(day21_part2(may_contain))
+    print(day21_part2(dangerous))
