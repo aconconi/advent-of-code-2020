@@ -23,7 +23,7 @@ def read_puzzle_input(file_name):
 
 
 def parse_path(path):
-    return re.findall(r"(e|se|sw|w|nw|ne)+?", path)
+    return re.findall(r"(e|se|sw|w|nw|ne)", path)
 
 
 def destination(path):
