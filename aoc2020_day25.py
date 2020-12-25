@@ -1,6 +1,6 @@
 """
     Advent of Code 2020
-    Day 24: Combo Breaker
+    Day 25: Combo Breaker
 """
 
 # INPUT = (door_public_key, card_public_key)
