@@ -1,4 +1,4 @@
-# My solutions for [Advent of Code 2020](https://adventofcode.com/2020)
+# My solutions (in Python) for [Advent of Code 2020](https://adventofcode.com/2020)
 
 > [Advent of Code](https://adventofcode.com/2020/about) is an Advent calendar of small
 > programming puzzles for a variety of skill sets and skill levels that can be solved in
@@ -26,9 +26,9 @@
 |  17 | [Conway Cubes](https://adventofcode.com/2020/day/17)            | [aoc2020_day17.py](aoc2020_day17.py) |
 |  18 | [Operation Order](https://adventofcode.com/2020/day/18)         | [aoc2020_day18.py](aoc2020_day18.py) |
 |  19 | [Monster Messages](https://adventofcode.com/2020/day/19)        | [aoc2020_day19.py](aoc2020_day19.py) |
-|  20 | [Jurassic Jigsaw](https://adventofcode.com/2020/day/20)         | [aoc2020_day19.py](aoc2020_day20.py) |
-|  21 | [Allergen Assessment](https://adventofcode.com/2020/day/21)     | [aoc2020_day19.py](aoc2020_day21.py) |
-|  22 | [Crab Combat](https://adventofcode.com/2020/day/22)             | [aoc2020_day19.py](aoc2020_day22.py) |
-|  23 | [Crab Cups](https://adventofcode.com/2020/day/23)               | [aoc2020_day19.py](aoc2020_day23.py) |
-|  24 | [Lobby Layout](https://adventofcode.com/2020/day/24)            | [aoc2020_day19.py](aoc2020_day24.py) |
-|  25 | [Combo Breaker](https://adventofcode.com/2020/day/25)           | [aoc2020_day19.py](aoc2020_day25.py) |
+|  20 | [Jurassic Jigsaw](https://adventofcode.com/2020/day/20)         | [aoc2020_day20.py](aoc2020_day20.py) |
+|  21 | [Allergen Assessment](https://adventofcode.com/2020/day/21)     | [aoc2020_day21.py](aoc2020_day21.py) |
+|  22 | [Crab Combat](https://adventofcode.com/2020/day/22)             | [aoc2020_day22.py](aoc2020_day22.py) |
+|  23 | [Crab Cups](https://adventofcode.com/2020/day/23)               | [aoc2020_day23.py](aoc2020_day23.py) |
+|  24 | [Lobby Layout](https://adventofcode.com/2020/day/24)            | [aoc2020_day24.py](aoc2020_day24.py) |
+|  25 | [Combo Breaker](https://adventofcode.com/2020/day/25)           | [aoc2020_day25.py](aoc2020_day25.py) |
